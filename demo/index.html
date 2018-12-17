@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>performance test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../dist/index.js"></script>
+    <script type="text/javascript">
+        axios({
+            method: 'post',
+            data: {
+                name: 'zane'
+            },
+            url: 'http://0.0.0.0:3001/post-delay-5s',
+        }).then(function (response) {
+            console.log('请求完成')
+        });
+    </script>
+    <style ref="text/css">
+        button {
+            height: 40px;
+            width: 100%;
+            background: #f2f2f2;
+            margin-bottom: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img width="100%" src="http://0.0.0.0:3001/static/pc1.jpeg" />
+        <video width="100%" controls="controls" src="http://0.0.0.0:3001/static/mp4.mp4" />
+    </div>
+    <button onclick="send('3s')">发送耗时3s的请求</button><br>
+    <button onclick="send('5s')">发送耗时5s的请求</button><br>
+    <button onclick="addStatic()">加载静态资源</button><br>
+    <button onclick="addScript()">加载含有ajax的script文件</button>
+    <img width="100%" src="http://0.0.0.0:3001/static/pc2.jpeg" />
+
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            console.log("window.oonload")
+        })
+        let img = document.getElementsByTagName("img")[1]
+        img.onload = function (params) {
+            console.log("img加载完成")
+        }
+        let video = document.getElementsByTagName("video")[0]
+        video.addEventListener("loadedmetadata", function (params) {
+            console.log("loadedmetadata")
+        })
+        video.addEventListener("loadstart", function (params) {
+            console.log("loadstart")
+        })
+        video.addEventListener("canplay", function (params) {
+            console.log("canplay")
+        })
+
+        function send(delay) {
+            axios({
+                method: 'get',
+                params: {
+                    name: `delay-${delay}`
+                },
+                url: `http://0.0.0.0:3001/get-delay-${delay}`,
+            }).then(function (response) {
+                console.log(response)
+            });
+        }
+
+        function addScript() {
+            let scrriptDom = document.createElement('script')
+            scrriptDom.src = "http://0.0.0.0:3001/static/script-ajax.js"
+            document.body.appendChild(scrriptDom)
+            scrriptDom.onload = function (params) {
+                console.log("scriptDom-onload")
+
+            }
+        }
+
+        function addStatic() {
+            let dom = document.createElement('video')
+            dom.src = "http://0.0.0.0:3001/static/m2.mp4"
+            dom.setAttribute("width", "100%")
+            dom.setAttribute("controls", "controls")
+            document.body.appendChild(dom)
+        }
+    </script>
+    <script>
+    webMonitor({
+            url: "http://0.0.0.0:3001/post-perfomance-report",
+            appId: 'test-page',
+
+        })
+    </script>
+</body>
+
+</html>

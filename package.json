@@ -1,0 +1,23 @@
+{
+    "name": "wx-web-performance-monitor",
+    "version": "1.0.0",
+    "description": "this plugin is used to monitoring your webside from slowload",
+    "main": "dist/index.js",
+    "scripts": {
+        "server": "node server/app.js",
+        "test": "webpack --mode=development && npm run server",
+        "build": "webpack --mode=production"
+    },
+    "author": "",
+    "license": "MIT",
+    "homepage": "http://git.winbaoxian.com:8888/chenghao/webPerformanceMonitor",
+    "dependencies": {},
+    "devDependencies": {
+        "ajax-hook": "^1.8.1",
+        "express": "^4.16.3",
+        "webpack": "^4.27.1",
+        "webpack-cli": "^3.1.2",
+        "webpack-hot-middleware": "^2.24.3",
+        "webpack-merge": "^4.1.5"
+    }
+}
