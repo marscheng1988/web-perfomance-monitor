@@ -7,7 +7,7 @@ npm install -S wy-performance-monitor
 
 //使用
 import Monitor from 'wy-perfomance-monitor'
-let m = new WebMonitor({
+let m = new Monitor({
 	 //项目名称（必填）
      appId: null,
      // 上报地址（必填）
