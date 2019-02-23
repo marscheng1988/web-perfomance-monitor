@@ -1,6 +1,7 @@
 
 ## 使用
-#### npm安装
+
+### npm安装
 ```javascript
 //安装依赖
 npm install -S wy-performance-monitor
@@ -37,7 +38,7 @@ m.add({
 })
 
 ```
-#### 页面插入代码
+### 页面插入代码
 ```javascript
     let s = document.createElement("script")
     s.src = "https://res.winbaoxian.com/autoUpload/activity/index_7854ee73401bdf2.js"
