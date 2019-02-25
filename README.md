@@ -4,7 +4,7 @@
 ### npm安装
 ```javascript
 //安装依赖
-npm install -S wy-performance-monitor
+npm install -S wy-perfomance-monitor
 
 //使用
 import Monitor from 'wy-perfomance-monitor'
